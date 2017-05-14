@@ -1,0 +1,5 @@
+h2>Comments:</h2>
+<% @article.comments.each do |c| %>
+    <p><strong><%= c.commenter %></strong><br>
+      <%= c.body %></p>
+<% end %>

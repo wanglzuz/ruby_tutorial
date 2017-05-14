@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
 
     @article = Article.new(article_params)
 
-    if not unique
+    if not unique?
       @article.errors.add(:title, :not_unique, message: "already in use!")
       render 'new'
       return
@@ -44,16 +44,23 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to articles_path
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :text)
   end
 
-  def unique
-    if (Article.where(:title => @article.title)) == nil
-      return true
+  def unique?
+    if Article.where(:title => @article.title).any?
+      return false
     end
-    return false
+    return true
   end
 
 end
