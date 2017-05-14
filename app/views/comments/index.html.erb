@@ -1,0 +1,8 @@
+<h1>List of Comments for article <%= @article.id %></h1>
+<% @article.comments.each do |c| %>
+    <p>
+      <strong><%= c.commenter %></strong><br>
+      <%= c.body %><br>
+      <%= link_to 'Destroy', [c.article, c], method: :delete %>
+    </p>
+<% end %>
