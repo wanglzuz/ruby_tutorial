@@ -1,4 +1,4 @@
-<h1>List of Comments for article <%= @article.id %></h1>
+<h1>List of Comments for article <%= @article.title %></h1>
 <% @article.comments.each do |c| %>
     <p>
       <strong><%= c.commenter %></strong><br>
